@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+.header {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid $couleur-bordure;
+
+  &__titre {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $couleur-texte-principal;
+
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+  }
+}
