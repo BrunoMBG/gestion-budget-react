@@ -1,3 +1,4 @@
+import Filters from "./components/Filters";
 import Header from "./components/Header";
 import Summary from "./components/Summary";
 
@@ -8,6 +9,7 @@ function App() {
       {/* Main */}
       <main>
         <Summary />
+        <Filters />
       </main>
     </>
   );
