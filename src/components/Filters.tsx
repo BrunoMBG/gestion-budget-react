@@ -1,4 +1,17 @@
+import { useState } from "react";
+
 function Filters() {
+  // Filtre par type
+  const [btnTous, setbtnTous] = useState("Tous");
+  const [btnRevenus, setbtnRevenus] = useState("Revenus");
+  const [btnDepenses, setbtnDepenses] = useState("Depenses");
+
+  // Filtre par catégorie
+  const [btnCategories, setbtnCategories] = useState("Toutes catégories");
+  const [btnAlimentation, setbtnAlimentation] = useState("Alimentation");
+  const [btnLoyer, setbtnLoyer] = useState("Loyer");
+  const [btnLoisirs, setbtnLoisirs] = useState("Loisirs");
+
   return (
     <section className="filtres" aria-label="Filtres des transactions">
       {/* Filtre par type */}
@@ -13,17 +26,17 @@ function Filters() {
           className="filtres__bouton filtres__bouton--actif"
           data-type="tous"
         >
-          Tous
+          {btnTous}
         </button>
 
         {/* Bouton revenus */}
         <button type="button" className="filtres__bouton" data-type="revenu">
-          Revenus
+          {btnRevenus}
         </button>
 
         {/* Bouton dépenses */}
         <button type="button" className="filtres__bouton" data-type="depense">
-          Dépenses
+          {btnDepenses}
         </button>
       </div>
 
@@ -39,7 +52,7 @@ function Filters() {
           className="filtres__bouton"
           data-categorie="toutes"
         >
-          Toutes catégories
+          {btnCategories}
         </button>
 
         {/* Bouton alimentation */}
@@ -48,7 +61,7 @@ function Filters() {
           className="filtres__bouton"
           data-categorie="alimentation"
         >
-          Alimentation
+          {btnAlimentation}
         </button>
 
         {/* Bouton loyer */}
@@ -57,7 +70,7 @@ function Filters() {
           className="filtres__bouton"
           data-categorie="loyer"
         >
-          Loyer
+          {btnLoyer}
         </button>
 
         {/* Bouton loisirs */}
@@ -66,7 +79,7 @@ function Filters() {
           className="filtres__bouton"
           data-categorie="loisirs"
         >
-          Loisirs
+          {btnLoisirs}
         </button>
       </div>
     </section>
