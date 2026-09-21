@@ -2,15 +2,10 @@ import { useState } from "react";
 
 function Filters() {
   // Filtre par type
-  const [btnTous, setbtnTous] = useState("Tous");
-  const [btnRevenus, setbtnRevenus] = useState("Revenus");
-  const [btnDepenses, setbtnDepenses] = useState("Depenses");
+  const [type, setType] = useState("tous");
 
   // Filtre par catégorie
-  const [btnCategories, setbtnCategories] = useState("Toutes catégories");
-  const [btnAlimentation, setbtnAlimentation] = useState("Alimentation");
-  const [btnLoyer, setbtnLoyer] = useState("Loyer");
-  const [btnLoisirs, setbtnLoisirs] = useState("Loisirs");
+  const [categorie, setCategorie] = useState("toutes");
 
   return (
     <section className="filtres" aria-label="Filtres des transactions">
@@ -23,20 +18,34 @@ function Filters() {
         {/* Bouton tous */}
         <button
           type="button"
-          className="filtres__bouton filtres__bouton--actif"
-          data-type="tous"
+          className={`filtres__bouton ${
+            type === "tous" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setType("tous")}
         >
-          {btnTous}
+          Tous
         </button>
 
         {/* Bouton revenus */}
-        <button type="button" className="filtres__bouton" data-type="revenu">
-          {btnRevenus}
+        <button
+          type="button"
+          className={`filtres__bouton ${
+            type === "revenu" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setType("revenu")}
+        >
+          Revenus
         </button>
 
         {/* Bouton dépenses */}
-        <button type="button" className="filtres__bouton" data-type="depense">
-          {btnDepenses}
+        <button
+          type="button"
+          className={`filtres__bouton ${
+            type === "depense" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setType("depense")}
+        >
+          Dépenses
         </button>
       </div>
 
@@ -49,37 +58,45 @@ function Filters() {
         {/* Bouton toutes catégories */}
         <button
           type="button"
-          className="filtres__bouton"
-          data-categorie="toutes"
+          className={`filtres__bouton ${
+            categorie === "toutes" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setCategorie("toutes")}
         >
-          {btnCategories}
+          Toutes
         </button>
 
         {/* Bouton alimentation */}
         <button
           type="button"
-          className="filtres__bouton"
-          data-categorie="alimentation"
+          className={`filtres__bouton ${
+            categorie === "alimentation" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setCategorie("alimentation")}
         >
-          {btnAlimentation}
+          Alimentation
         </button>
 
         {/* Bouton loyer */}
         <button
           type="button"
-          className="filtres__bouton"
-          data-categorie="loyer"
+          className={`filtres__bouton ${
+            categorie === "loyer" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setCategorie("loyer")}
         >
-          {btnLoyer}
+          Loyer
         </button>
 
         {/* Bouton loisirs */}
         <button
           type="button"
-          className="filtres__bouton"
-          data-categorie="loisirs"
+          className={`filtres__bouton ${
+            categorie === "loisirs" ? "filtres__bouton--actif" : ""
+          }`}
+          onClick={() => setCategorie("loisirs")}
         >
-          {btnLoisirs}
+          Loisirs
         </button>
       </div>
     </section>
