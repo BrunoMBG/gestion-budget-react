@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
+import Button from "./Button";
 
 function Form() {
   interface TransactionsForm {
@@ -110,9 +111,9 @@ function Form() {
       />
 
       {/* Bouton  */}
-      <button type="submit" className="form-transaction__bouton">
+      <Button type="submit" className="form-transaction__bouton">
         Ajouter la transaction
-      </button>
+      </Button>
     </form>
   );
 }
