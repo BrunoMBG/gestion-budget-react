@@ -7,6 +7,19 @@ function Filters() {
   // Filtre par catégorie
   const [categorie, setCategorie] = useState("toutes");
 
+  const typeOptions = [
+    { value: "tous", label: "Tous" },
+    { value: "revenu", label: "Revenus" },
+    { value: "depense", label: "Dépenses" },
+  ];
+
+  const categoryOptions = [
+    { value: "toutes", label: "Toutes" },
+    { value: "alimentation", label: "Alimentation" },
+    { value: "loyer", label: "Loyer" },
+    { value: "loisirs", label: "Loisirs" },
+  ];
+
   return (
     <section className="filtres" aria-label="Filtres des transactions">
       {/* Filtre par type */}
