@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Input from "./Input";
+import Select from "./Select";
 
 function Form() {
   interface TransactionsForm {
@@ -38,80 +40,74 @@ function Form() {
       <h2 className="form-transaction__titre">Nouvelle transaction</h2>
 
       {/*  Titre */}
-      <div className="form-transaction__champ">
-        <label htmlFor="titre" className="form-transaction__label">
-          Titre
-        </label>
-        <input
-          type="text"
-          id="titre"
-          name="title"
-          className="form-transaction__input"
-          placeholder="Ex. Courses de la semaine"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <Input
+        label="Titre"
+        id="titre"
+        name="title"
+        type="text"
+        placeholder="Ex : Courses de la semaine"
+        value={formData.title}
+        onChange={handleChange}
+        required
+      />
 
       {/* Montant  */}
-      <div className="form-transaction__champ">
-        <label htmlFor="montant" className="form-transaction__label">
-          {" "}
-          Montant (€)
-        </label>
-        <input
-          type="number"
-          id="montant"
-          name = "amount"
-          className="form-transaction__input"
-          placeholder="0,00"
-          step="0.01"
-          min="0.01"
-          value={formData.amount}
+      <Input
+        label="Montant (€)"
+        id="montant"
+        name="amount"
+        type="number"
+        placeholder="0,00"
+        step="0.01"
+        min="0.01"
+        value={formData.amount}
+        onChange={handleChange}
+        required
+      />
+
+      {/* Select */}
+      <div className="form-transaction__bloc">
+        {/* Champ type */}
+        <Select
+          label="Type"
+          id="type"
+          name="type"
+          value={formData.type}
           onChange={handleChange}
+          options={[
+            { value: "revenu", label: "Revenu" },
+            { value: "depense", label: "Dépense" },
+          ]}
           required
         />
-      </div>
 
-      <div className="form-transaction__bloc">
-        <div className="form-transaction__champ">
-          <label htmlFor="type" className="form-transaction__label">
-            Type
-          </label>
-          <select id="type" name="type" value={formData.type} onChange={handleChange} className="form-transaction__select" required>
-            <option value="revenu">Revenu</option>
-            <option value="depense">Dépense</option>
-          </select>
-        </div>
-        <div className="form-transaction__champ">
-          <label htmlFor="categorie" className="form-transaction__label">
-            Catégorie
-          </label>
-          <select id="categorie" name="category" value={formData.category} onChange={handleChange} className="form-transaction__select" required>
-            <option value="alimentation">Alimentation</option>
-            <option value="loyer">Loyer</option>
-            <option value="loisirs">Loisirs</option>
-            <option value="autre">Autre</option>
-          </select>
-        </div>
+        {/* Champ Catégorie */}
+        <Select
+          label="Categorie"
+          name="category"
+          id="categorie"
+          value={formData.category}
+          onChange={handleChange}
+          options={[
+            { value: "alimentation", label: "Alimentation" },
+            { value: "loyer", label: "Loyer" },
+            { value: "loisirs", label: "Loisirs" },
+            { value: "autre", label: "Autre" },
+          ]}
+          required
+        />
       </div>
 
       {/* Date  */}
-      <div className="form-transaction__champ">
-        <label htmlFor="date" className="form-transaction__label">
-          Date
-        </label>
-        <input
-          type="date"
-          id="date"
-          name="date"
-          className="form-transaction__input"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <Input
+        label="Date"
+        id="date"
+        name="date"
+        type="date"
+        value={formData.date}
+        onChange={handleChange}
+        required
+      />
 
       {/* Bouton  */}
       <button type="submit" className="form-transaction__bouton">
