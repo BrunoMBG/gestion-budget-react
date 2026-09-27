@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 function Filters() {
   // Filtre par type
@@ -6,6 +7,19 @@ function Filters() {
 
   // Filtre par catégorie
   const [categorie, setCategorie] = useState("toutes");
+
+  const typeOptions = [
+    { value: "tous", label: "Tous" },
+    { value: "revenu", label: "Revenus" },
+    { value: "depense", label: "Dépenses" },
+  ];
+
+  const categoryOptions = [
+    { value: "toutes", label: "Toutes" },
+    { value: "alimentation", label: "Alimentation" },
+    { value: "loyer", label: "Loyer" },
+    { value: "loisirs", label: "Loisirs" },
+  ];
 
   return (
     <section className="filtres" aria-label="Filtres des transactions">
@@ -15,38 +29,18 @@ function Filters() {
         role="group"
         aria-label="Filtrer par type"
       >
-        {/* Bouton tous */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            type === "tous" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setType("tous")}
-        >
-          Tous
-        </button>
-
-        {/* Bouton revenus */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            type === "revenu" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setType("revenu")}
-        >
-          Revenus
-        </button>
-
-        {/* Bouton dépenses */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            type === "depense" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setType("depense")}
-        >
-          Dépenses
-        </button>
+        {typeOptions.map((opt) => (
+          <Button
+            key={opt.value}
+            type="button"
+            className={`filtres__bouton ${
+              type === opt.value ? "filtres__bouton--actif" : ""
+            }`}
+            onClick={() => setType(opt.value)}
+          >
+            {opt.label}
+          </Button>
+        ))}
       </div>
 
       {/* Filtre par catégorie  */}
@@ -55,49 +49,18 @@ function Filters() {
         role="group"
         aria-label="Filtrer par catégorie"
       >
-        {/* Bouton toutes catégories */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            categorie === "toutes" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setCategorie("toutes")}
-        >
-          Toutes
-        </button>
-
-        {/* Bouton alimentation */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            categorie === "alimentation" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setCategorie("alimentation")}
-        >
-          Alimentation
-        </button>
-
-        {/* Bouton loyer */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            categorie === "loyer" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setCategorie("loyer")}
-        >
-          Loyer
-        </button>
-
-        {/* Bouton loisirs */}
-        <button
-          type="button"
-          className={`filtres__bouton ${
-            categorie === "loisirs" ? "filtres__bouton--actif" : ""
-          }`}
-          onClick={() => setCategorie("loisirs")}
-        >
-          Loisirs
-        </button>
+        {categoryOptions.map((opt) => (
+          <Button
+            key={opt.value}
+            type="button"
+            className={`filtres__bouton ${
+              categorie === opt.value ? "filtres__bouton--actif" : ""
+            }`}
+            onClick={() => setCategorie(opt.value)}
+          >
+            {opt.label}
+          </Button>
+        ))}
       </div>
     </section>
   );
