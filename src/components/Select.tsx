@@ -11,6 +11,7 @@ interface SelectProps {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options: Option[];
   required?: boolean;
+  disabled?: boolean;
 }
 
 /**
@@ -34,6 +35,7 @@ function Select({
   onChange,
   options,
   required = false,
+  disabled,
 }: SelectProps) {
   return (
       <div className="form-transaction__champ">
@@ -48,6 +50,7 @@ function Select({
           onChange={onChange}
           className="form-transaction__select"
           required={required}
+          disabled={disabled}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

@@ -2,8 +2,19 @@ import { useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
 import Button from "./Button";
+import type { Transaction } from "../types/types";
 
-function Form() {
+interface FormProps {
+  onAddTransaction: (transaction: Omit<Transaction, "id">) => void;
+}
+
+function Form({ onAddTransaction }: FormProps) {
+  // Récupère la date du jour
+  const todayDate = new Date().toISOString().split("T")[0];
+  // Définit la date minimale à 5 ans avant l'année actuelle
+  const currentYear = new Date().getFullYear();
+  const minDate = `${currentYear - 5}-01-01`;
+
   interface TransactionsForm {
     title: string;
     amount: string;
@@ -24,12 +35,35 @@ function Form() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name === "type" && value === "revenu") {
+      setFormData({
+        ...formData,
+        type: "revenu",
+        category: "" as any,
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+
+    const transactionToSend = {
+      ...formData,
+      category: formData.type === "revenu" ? ("" as any) : formData.category,
+    };
+
+    onAddTransaction(transactionToSend);
+
+    setFormData({
+      title: "",
+      amount: "",
+      type: "revenu",
+      category: "alimentation",
+      date: "",
+    });
   };
 
   return (
@@ -95,7 +129,8 @@ function Form() {
             { value: "loisirs", label: "Loisirs" },
             { value: "autre", label: "Autre" },
           ]}
-          required
+          disabled={formData.type === "revenu"}
+          required={formData.type !== "revenu"}
         />
       </div>
 
@@ -107,6 +142,8 @@ function Form() {
         type="date"
         value={formData.date}
         onChange={handleChange}
+        min={minDate}
+        max={todayDate}
         required
       />
 
