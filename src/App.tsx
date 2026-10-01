@@ -26,7 +26,7 @@ function App() {
       <Header />
       {/* Main */}
       <main>
-        <Summary />
+        <Summary transactions={transactions}/>
         <Filters />
 
         <Transactions transactions={transactions} />
