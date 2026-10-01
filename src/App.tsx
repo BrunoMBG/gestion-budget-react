@@ -7,29 +7,37 @@ import type { Transaction } from "./types/types";
 import { useState } from "react";
 
 function App() {
-// Stocker les transactions
+  // Stocker les transactions
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   // Fonction pour ajouter la transaction reçue du formulaire
   const handleAddTransaction = (formData: Omit<Transaction, "id">) => {
     const newTransaction: Transaction = {
       ...formData,
-      id: crypto.randomUUID(), 
+      id: crypto.randomUUID(),
       amount: Number(formData.amount),
     };
 
     setTransactions([newTransaction, ...transactions]);
   };
 
+  const handleDeleteTransaction = (id: string | number) => {
+    setTransactions(
+      transactions.filter((transaction) => transaction.id !== id),
+    );
+  };
   return (
     <>
       <Header />
       {/* Main */}
       <main>
-        <Summary transactions={transactions}/>
+        <Summary transactions={transactions} />
         <Filters />
 
-        <Transactions transactions={transactions} />
+        <Transactions
+          transactions={transactions}
+          onDeleteTransaction={handleDeleteTransaction}
+        />
         <Form onAddTransaction={handleAddTransaction} />
       </main>
     </>

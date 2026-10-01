@@ -2,9 +2,13 @@ import type { Transaction } from "../types/types";
 
 interface TransactionsProps {
   transactions: Transaction[];
+  onDeleteTransaction: (id: string | number) => void;
 }
 
-function Transactions({ transactions }: TransactionsProps) {
+function Transactions({
+  transactions,
+  onDeleteTransaction,
+}: TransactionsProps) {
   return (
     <section className="transactions" aria-label="Liste des transactions">
       <div className="transactions__tri">
@@ -70,6 +74,7 @@ function Transactions({ transactions }: TransactionsProps) {
                   <button
                     type="button"
                     className="transaction__bouton-supprimer"
+                    onClick={() => onDeleteTransaction(transaction.id)}
                     aria-label={`Supprimer la transaction ${transaction.title}`}
                   >
                     ✕
