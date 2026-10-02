@@ -41,6 +41,27 @@ function App() {
     return filterTypes && filterCategoryType;
   });
 
+  const [displayOption, setDisplayOption] = useState("dateDesc");
+
+  const displayTransactions = [...filteredTransactions].sort((a, b) => {
+    if (displayOption === "dateDesc") {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    }
+    if (displayOption === "dateAsc") {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+    if (displayOption === "montantDesc") {
+      return Number(b.amount) - Number(a.amount);
+    }
+    if (displayOption === "montantAsc") {
+      return Number(a.amount) - Number(b.amount);
+    }
+    if (displayOption === "titreAsc") {
+      return a.title.localeCompare(b.title);
+    }
+    return 0;
+  });
+
   return (
     <>
       <Header />
@@ -55,8 +76,10 @@ function App() {
         />
 
         <Transactions
-          transactions={filteredTransactions}
+          transactions={displayTransactions}
           onDeleteTransaction={handleDeleteTransaction}
+          typeOption={displayOption}
+          onChange={setDisplayOption}
         />
         <Form onAddTransaction={handleAddTransaction} />
       </main>
