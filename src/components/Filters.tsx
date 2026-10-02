@@ -1,13 +1,20 @@
-import { useState } from "react";
 import Button from "./Button";
 
-function Filters() {
-  // Filtre par type
-  const [type, setType] = useState("tous");
+interface FiltersProps {
+  filterType: string;
+  setFilterType: (type: string) => void;
+  filterCategory: string;
+  setFilterCategory: (category: string) => void;
+}
 
-  // Filtre par catégorie
-  const [categorie, setCategorie] = useState("toutes");
+function Filters({
+  filterType,
+  setFilterType,
+  filterCategory,
+  setFilterCategory
 
+}: FiltersProps) {
+  
   const typeOptions = [
     { value: "tous", label: "Tous" },
     { value: "revenu", label: "Revenus" },
@@ -34,9 +41,9 @@ function Filters() {
             key={opt.value}
             type="button"
             className={`filtres__bouton ${
-              type === opt.value ? "filtres__bouton--actif" : ""
+              filterType === opt.value ? "filtres__bouton--actif" : ""
             }`}
-            onClick={() => setType(opt.value)}
+            onClick={() => setFilterType(opt.value)}
           >
             {opt.label}
           </Button>
@@ -54,9 +61,9 @@ function Filters() {
             key={opt.value}
             type="button"
             className={`filtres__bouton ${
-              categorie === opt.value ? "filtres__bouton--actif" : ""
+              filterCategory === opt.value ? "filtres__bouton--actif" : ""
             }`}
-            onClick={() => setCategorie(opt.value)}
+            onClick={() => setFilterCategory(opt.value)}
           >
             {opt.label}
           </Button>

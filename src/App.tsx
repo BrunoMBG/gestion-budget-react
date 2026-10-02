@@ -26,16 +26,36 @@ function App() {
       transactions.filter((transaction) => transaction.id !== id),
     );
   };
+
+  // États pour les filtres
+  const [filterType, setFilterType] = useState("tous");
+  const [filterCategory, setFilterCategory] = useState("toutes");
+
+  // Filtrage des transactions
+  const filteredTransactions = transactions.filter((transaction) => {
+    const filterTypes =
+      filterType === "tous" || transaction.type === filterType;
+    const filterCategoryType =
+      filterCategory === "toutes" || transaction.category === filterCategory;
+
+    return filterTypes && filterCategoryType;
+  });
+
   return (
     <>
       <Header />
       {/* Main */}
       <main>
         <Summary transactions={transactions} />
-        <Filters />
+        <Filters
+          filterType={filterType}
+          setFilterType={setFilterType}
+          filterCategory={filterCategory}
+          setFilterCategory={setFilterCategory}
+        />
 
         <Transactions
-          transactions={transactions}
+          transactions={filteredTransactions}
           onDeleteTransaction={handleDeleteTransaction}
         />
         <Form onAddTransaction={handleAddTransaction} />
