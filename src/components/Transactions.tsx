@@ -3,11 +3,15 @@ import type { Transaction } from "../types/types";
 interface TransactionsProps {
   transactions: Transaction[];
   onDeleteTransaction: (id: string | number) => void;
+  typeOption: string;
+  onChange: (type: string) => void;
 }
 
 function Transactions({
   transactions,
   onDeleteTransaction,
+  typeOption,
+  onChange,
 }: TransactionsProps) {
   return (
     <section className="transactions" aria-label="Liste des transactions">
@@ -16,7 +20,12 @@ function Transactions({
           Trier par
         </label>
 
-        <select id="triTransactions" className="transactions__select">
+        <select
+          id="triTransactions"
+          className="transactions__select"
+          value={typeOption}
+          onChange={(e) => onChange(e.target.value)}
+        >
           <option value="dateDesc">Date (plus récent)</option>
           <option value="dateAsc">Date (plus ancien)</option>
           <option value="montantDesc">Montant (décroissant)</option>
