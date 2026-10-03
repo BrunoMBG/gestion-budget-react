@@ -21,7 +21,30 @@ Application de gestion de budget personnel développée en **React, TypeScript e
 
 ```text
 src/
-├── components/     # Composants React modulaires (Header, Summary)
-├── scss/           # Styles SCSS et variables
-├── App.tsx         # Composant racine et gestion du state/flux de données
+├── components/     # Composants React modulaires
+├── scss/           # Styles SCSS et variables globales
+├── types/          # Définitions des interfaces et types TypeScript
+├── App.tsx         # Composant racine et gestion du state
 └── main.tsx        # Point d'entrée React et import SCSS global
+
+## Installation et lancement
+
+1. Cloner le projet :
+```bash
+git clone https://github.com/BrunoMBG/gestion-budget-react.git
+```
+
+2. Installer les dépendances :
+```bash
+npm install
+```
+
+3. Lancer le serveur de développement :
+```bash
+npm run dev
+```
+
+4. Compiler le projet pour la production :
+```bash
+npm run build
+```
