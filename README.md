@@ -26,6 +26,7 @@ src/
 ├── types/          # Définitions des interfaces et types TypeScript
 ├── App.tsx         # Composant racine et gestion du state
 └── main.tsx        # Point d'entrée React et import SCSS global
+```
 
 ## Installation et lancement
 
