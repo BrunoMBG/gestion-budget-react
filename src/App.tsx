@@ -4,12 +4,14 @@ import Header from "./components/Header";
 import Summary from "./components/Summary";
 import Transactions from "./components/Transactions";
 import type { Transaction } from "./types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   // Stocker les transactions
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    const savedTransactions = localStorage.getItem("transactions");
+    return savedTransactions ? JSON.parse(savedTransactions) : [];
+  });
   // Fonction pour ajouter la transaction reçue du formulaire
   const handleAddTransaction = (formData: Omit<Transaction, "id">) => {
     const newTransaction: Transaction = {
@@ -61,6 +63,11 @@ function App() {
     }
     return 0;
   });
+
+  // Sauvegarder dans le localStorage
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   return (
     <>
