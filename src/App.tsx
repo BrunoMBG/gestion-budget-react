@@ -12,6 +12,7 @@ function App() {
     const savedTransactions = localStorage.getItem("transactions");
     return savedTransactions ? JSON.parse(savedTransactions) : [];
   });
+  
   // Fonction pour ajouter la transaction reçue du formulaire
   const handleAddTransaction = (formData: Omit<Transaction, "id">) => {
     const newTransaction: Transaction = {
